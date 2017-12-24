@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Vuejs components test page</title>
+        <style>
+            body {
+                height: 100vh;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+            #vuejs-app {
+                display: grid;
+                grid-template-columns: 50vw 50vw;
+                grid-template-rows: 33vh;
+                height: 100%;
+                box-sizing: border-box;
+            }
+
+            #vuejs-app div:not(.bp-dropdown) {
+                padding: 5px;
+                border: 1px solid #eee;
+            }
+
+            #vuejs-app div hr {
+                width: 100%;
+            }
+
+            #vuejs-app div:nth-child(2n) {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #vuejs-app div:nth-child(2n) > .bp-dropdown {
+                margin-left: auto;
+            }
+
+            #vuejs-app div:nth-child(5n) {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #vuejs-app div:nth-child(5n) .bp-dropdown {
+                margin-top: auto;
+                margin-left: auto;
+            }
+
+            .custom-class-bp__btn {
+                background: gray;
+            }
+
+            .custom-class-bp__body {
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="vuejs-app">
+            <div>
+                <dropdown>
+                    <template slot="btn">Button text</template>
+                    <template slot="body">
+                        <ul style="margin:0;padding:0;list-style:none">
+                            <li><input type="checkbox">item 1</li>
+                            <li><input type="checkbox">item 2</li>
+                            <li><input type="checkbox">item 3</li>
+                        </ul>
+                    </template>
+                </dropdown>
+                <hr>
+                Default use
+                <pre>
+&lt;dropdown&gt;
+    &lt;template slot="btn"&gt;Button text&lt;/template&gt;
+    &lt;template slot="body"&gt;
+        &lt;ul style="margin:0;padding:0;list-style:none"&gt;
+        &lt;li&gt;&lt;input type="checkbox"&gt;item 1&lt;/li&gt;
+        &lt;li&gt;&lt;input type="checkbox"&gt;item 2&lt;/li&gt;
+        &lt;li&gt;&lt;input type="checkbox"&gt;item 3&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/template&gt;
+&lt;/dropdown&gt;
+                </pre>
+            </div>
+            <div>
+                <dropdown>
+                    <template slot="btn">Lorem default</template>
+                    <template slot="body">
+                        <div style="width:50vw">
+                            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolore et illo illum
+                                labore perferendis provident repudiandae sunt, tempora tempore? Consectetur debitis eaque
+                                earum inventore nisi, odit totam unde voluptate.
+                            </div>
+                            <div>Accusamus eius eligendi esse explicabo fugit ipsum maiores molestiae tempore ullam unde.
+                                Aliquid cupiditate dolorem eum inventore pariatur quaerat quis similique voluptatem. Ad
+                                libero molestiae mollitia placeat tempore? Consequuntur, perspiciatis.
+                            </div>
+                            <div>A accusamus autem dolor eveniet facere laborum laudantium non possimus qui temporibus! Eum
+                                labore, quasi. Animi consectetur doloremque eligendi eveniet explicabo, fugit iste, quae
+                                quam quasi recusandae ullam ut vero?
+                            </div>
+                        </div>
+                    </template>
+                </dropdown>
+                <hr>
+                Auto positioning if body out of window
+                <pre>
+&lt;dropdown&gt;
+    &lt;template slot="btn"&gt;Lorem default&lt;/template&gt;
+    &lt;template slot="body"&gt;
+        &lt;div style="width:50vw"&gt;
+            Lorem......
+        &lt;/div&gt;
+    &lt;/template&gt;
+&lt;/dropdown&gt;
+                </pre>
+            </div>
+            <div>
+                <dropdown :trigger="'hover'" :close-on-click="true" :is-arrow="false">
+                    <template slot="btn">
+                        <a href="#0">More....</a>
+                    </template>
+                    <template slot="body">
+                        <a href="#0">More....</a>
+                        <br>
+                        <a href="#0">More....</a>
+                        <br>
+                        <a href="#0">More....</a>
+                    </template>
+                </dropdown>
+                <hr>
+                Hover trigger and close body click.
+                <br>
+                Def content text: "Empty content";
+                <pre>
+&lt;dropdown :trigger="'hover'" :close-on-click="true"
+                    :is-arrow="false"&gt;<br />
+    &lt;template slot="btn"&gt;<br />
+        &lt;a href="#0"&gt;More....&lt;/a&gt;<br />
+    &lt;/template&gt;<br />
+    &lt;template slot="body"&gt;<br />
+        &lt;a href="#0"&gt;More....&lt;/a&gt;<br />
+        &lt;br&gt;<br />
+        &lt;a href="#0"&gt;More....&lt;/a&gt;<br />
+        &lt;br&gt;<br />
+        &lt;a href="#0"&gt;More....&lt;/a&gt;<br />
+    &lt;/template&gt;<br />
+&lt;/dropdown&gt;
+                </pre>
+            </div>
+            <div>
+                <dropdown :class-name="'custom-class'"></dropdown>
+                <hr>
+                Custom class
+                <pre>
+&lt;dropdown :class-name="'custom-class'"&gt;&lt;/dropdown&gt;
+
+.custom-class-bp__btn {
+    background: gray;
+}
+
+.custom-class-bp__body {
+    font-size: 20px;
+}
+                </pre>
+            </div>
+            <div>
+                Auto positioning if body out of window
+                <br>
+                Without arrow
+                <pre>
+&lt;dropdown :is-arrow="false"&gt;&lt;/dropdown&gt;
+                </pre>
+                <dropdown :is-arrow="false"></dropdown>
+            </div>
+        </div>
+
+        <script src="./dropdown.min.js"></script>
+    </body>
+</html>
