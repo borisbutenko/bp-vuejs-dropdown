@@ -1,9 +1,5 @@
 ### bp-vuejs-dropdown
 
-<p align="center">
-  <img src="https://media.giphy.com/media/xUA7beKmTnr9fkbI6k/giphy.gif">
-</p>
-
 [Live demo here](https://borisbutenko.github.io/bp-vuejs-dropdown/demo/index.html)
 
 Install:
