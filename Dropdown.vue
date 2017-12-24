@@ -1,30 +1,28 @@
 <template>
-    <keep-alive>
-        <div class="bp-dropdown" :class="className">
-            <span @click="_onToggle"
-                  @mouseenter="_onMouseenter"
-                  @mouseleave="_onMouseleave"
-                  :class="btnClassObject"
-                  class="bp-dropdown__btn">
-                <slot name="btn">Button text</slot>
-                <svg v-if="isArrow"
-                     class="bp-dropdown__icon"
-                     viewBox="0 0 256 512">
-                    <path fill="currentColor" d="M119.5 326.9L3.5 209.1c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0L128 287.3l100.4-102.2c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L136.5 327c-4.7 4.6-12.3 4.6-17-.1z"></path>
-                </svg>
-            </span>
-            <transition name="fade">
-                <div v-if="!isHidden"
-                     @click="_onBodyClick"
-                     @mouseleave="_onMouseleave"
-                     :id="generatedId"
-                     :style="{ top: `${positionTop}px`, left: `${positionLeft}px` }"
-                     :class="`bp-dropdown__body ${className}-bp__body`">
-                    <slot name="body">Empty content</slot>
-                </div>
-            </transition>
-        </div>
-    </keep-alive>
+    <div class="bp-dropdown" :class="className">
+        <span @click="_onToggle"
+              @mouseenter="_onMouseenter"
+              @mouseleave="_onMouseleave"
+              :class="btnClassObject"
+              class="bp-dropdown__btn">
+            <slot name="btn">Button text</slot>
+            <svg v-if="isArrow"
+                 class="bp-dropdown__icon"
+                 viewBox="0 0 256 512">
+                <path fill="currentColor" d="M119.5 326.9L3.5 209.1c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0L128 287.3l100.4-102.2c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L136.5 327c-4.7 4.6-12.3 4.6-17-.1z"></path>
+            </svg>
+        </span>
+        <transition name="fade">
+            <div v-if="!isHidden"
+                 @click="_onBodyClick"
+                 @mouseleave="_onMouseleave"
+                 :id="generatedId"
+                 :style="{ top: `${positionTop}px`, left: `${positionLeft}px` }"
+                 :class="`bp-dropdown__body ${className}-bp__body`">
+                <slot name="body">Empty content</slot>
+            </div>
+        </transition>
+    </div>
 </template>
 
 <script>
