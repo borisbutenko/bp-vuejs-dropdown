@@ -9,7 +9,7 @@ npm i -D bp-vuejs-dropdown
 Import:
 ```javascript
 import Vue from 'vue';
-import Dropdown from 'bp-vuejs-dropdown';
+import Dropdown from 'bp-vuejs-dropdown/Dropdown';
 
 // global
 Vue.use(Popover)
