@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Dropdown from '../Dropdown';
 
-new Vue({
+window.vm = new Vue({
     el: '#vuejs-app',
     components: { Dropdown }
 });

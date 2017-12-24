@@ -98,3 +98,10 @@ Dropdown has auto positioning, depending on position in visible field (window)
 ```text
 $root.$emit('bq-dropdown:hide')
 ```
+
+### Toggle dropdown programmatically
+
+```text
+<dropdown ref="dropdown"></dropdown>
+$refs.dropdown._onToggle()
+```

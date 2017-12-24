@@ -1,11 +1,11 @@
 <template>
     <div class="bp-dropdown" :class="className">
-        <span @click="_onToggle"
+        <span @click="toggle"
               @mouseenter="_onMouseenter"
               @mouseleave="_onMouseleave"
               :class="btnClassObject"
               class="bp-dropdown__btn">
-            <slot name="btn">Button text</slot>
+            <slot name="btn"></slot>
             <svg v-if="isArrow"
                  class="bp-dropdown__icon"
                  viewBox="0 0 256 512">
@@ -114,7 +114,7 @@
                 this.generatedId = `bq-dropdown-${Math.random().toString(36).substr(2, 10)}`;
             },
 
-            _onToggle() {
+            toggle() {
                 if (this.trigger !== 'click') {
                     return;
                 }

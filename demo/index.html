@@ -61,7 +61,7 @@
     <body>
         <div id="vuejs-app">
             <div>
-                <dropdown>
+                <dropdown ref="d">
                     <template slot="btn">Button text</template>
                     <template slot="body">
                         <ul style="margin:0;padding:0;list-style:none">
@@ -153,7 +153,9 @@
                 </pre>
             </div>
             <div>
-                <dropdown :class-name="'custom-class'"></dropdown>
+                <dropdown :class-name="'custom-class'">
+                    <template slot="btn">Custom class</template>
+                </dropdown>
                 <hr>
                 Custom class
                 <pre>
@@ -171,14 +173,14 @@
             <div>
                 Auto positioning if body out of window
                 <br>
-                Without arrow
+                Without button text
                 <pre>
 &lt;dropdown :is-arrow="false"&gt;&lt;/dropdown&gt;
                 </pre>
-                <dropdown :is-arrow="false"></dropdown>
+                <dropdown></dropdown>
             </div>
         </div>
 
-        <script src="./dropdown.min.js"></script>
+        <script src="./dropdown.js"></script>
     </body>
 </html>
