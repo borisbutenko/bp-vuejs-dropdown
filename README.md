@@ -12,7 +12,7 @@ import Vue from 'vue';
 import Dropdown from 'bp-vuejs-dropdown/Dropdown';
 
 // global
-Vue.use(Popover)
+Vue.use(Dropdown)
 
 //local
 components: { Dropdown }
