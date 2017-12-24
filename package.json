@@ -7,13 +7,19 @@
     "url": "git+https://github.com/borisbutenko/bp-vuejs-dropdown.git"
   },
   "keywords": [
-    "dropdown",
-    "vuejs"
+    "vuejs",
+    "vue",
+    "component",
+    "dropdown"
   ],
   "author": "Monohromniy Qvant",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/borisbutenko/vuejs-components/issues"
   },
-  "homepage": "https://borisbutenko.github.io/bp-vuejs-dropdown/demo/index.html"
+  "homepage": "https://borisbutenko.github.io/bp-vuejs-dropdown/demo/index.html",
+  "dependencies": {
+    "vue": "^2.5.13",
+    "vue-template-compiler": "^2.5.13"
+  }
 }
