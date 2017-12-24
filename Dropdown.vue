@@ -89,7 +89,7 @@
             const $root = this.$root;
 
             // --- hide dropdown on show other dropdowns
-            $root.$on('bq-dropdown:toggle', () => this.isHidden = true);
+            $root.$on('bq-dropdown:hide', () => this.isHidden = true);
 
             // --- hide dropdown on document click event
             if (this.trigger === 'click' && !$root.bqDropdown) {
@@ -103,7 +103,7 @@
                         return;
                     }
 
-                    this.$root.$emit('bq-dropdown:toggle');
+                    this.$root.$emit('bq-dropdown:hide');
                 }
             }
 
@@ -122,7 +122,6 @@
                 }
 
                 this.checkCustomCallback();
-                this.prepare();
             },
 
             _onMouseenter() {
@@ -131,7 +130,6 @@
                 }
 
                 this.checkCustomCallback();
-                this.prepare();
             },
 
             _onMouseleave(e) {
@@ -161,12 +159,17 @@
             checkCustomCallback() {
                 if (this.isHidden) {
                     // --- custom callback before open
-                    new Promise(this.beforeOpen)
-                        .then(() =>
-                            // --- hide dropdown on show other dropdowns
-                            this.$root.$emit('bq-dropdown:toggle')
-                        )
+                    new Promise((resolve, reject) => {
+                        this.beforeOpen.call(this, resolve);
+                    }).then(() => {
+                        // --- hide dropdown on show other dropdowns
+                        this.$root.$emit('bq-dropdown:hide');
+                        this.prepare();
+                    })
                         .catch(() => { throw Error('bq-dropdown promise error') });
+                }
+                else {
+                    this.prepare();
                 }
             },
 

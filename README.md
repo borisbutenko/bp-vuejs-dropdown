@@ -40,7 +40,11 @@ Use:
 ```javascript
 props: {
     // --- custom callback before dropdown's open
-    // --- :beforeOpen="beforeOpen"
+    // --- :before-open="beforeOpen"
+    // --- beforeOpen(resolve) {
+    //     ... your code here
+    //     resolve() // don't forget call resolve!
+    // } 
     beforeOpen: {
         type: Funciton,
         required: false,
@@ -85,4 +89,12 @@ props: {
 ```
 ### Positioning
 
+```text
 Dropdown has auto positioning, depending on position in visible field (window)
+```
+
+### Hide dropdown programmatically
+
+```text
+$root.$emit('bq-dropdown:hide')
+```
