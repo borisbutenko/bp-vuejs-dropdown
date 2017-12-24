@@ -103,5 +103,5 @@ $root.$emit('bq-dropdown:hide')
 
 ```text
 <dropdown ref="dropdown"></dropdown>
-$refs.dropdown._onToggle()
+$refs.dropdown.toggle()
 ```
