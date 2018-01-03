@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/borisbutenko/vuejs-components/issues"
   },
-  "homepage": "https://borisbutenko.github.io/bp-vuejs-dropdown/demo/index.html",
+  "homepage": "https://brandquad.github.io/bp-vuejs-demo/#/dropdown",
   "dependencies": {
     "vue": "^2.5.13",
     "vue-template-compiler": "^2.5.13"
