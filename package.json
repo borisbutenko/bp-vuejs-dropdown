@@ -1,6 +1,6 @@
 {
   "name": "bp-vuejs-dropdown",
-  "version": "1.0.9",
+  "version": "2.1.1",
   "description": "dropdown with auto positioning for vuejs",
   "repository": {
     "type": "git",
@@ -12,14 +12,34 @@
     "component",
     "dropdown"
   ],
-  "author": "Monohromniy Qvant",
-  "license": "ISC",
+  "author": "Boris Butenko",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/borisbutenko/vuejs-components/issues"
+    "url": "https://github.com/borisbutenko/bp-vuejs-dropdown/issues"
   },
   "homepage": "https://brandquad.github.io/bp-vuejs-demo/#/dropdown",
   "dependencies": {
     "vue": "^2.5.13",
     "vue-template-compiler": "^2.5.13"
+  },
+  "main": "Dropdown.vue",
+  "scripts": {
+    "build": "webpack --progress --colors"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "vue-loader": "^13.6.2",
+    "webpack": "^3.10.0"
   }
 }
