@@ -54,7 +54,13 @@
             align: {
                 type: String,
                 required: false,
-                default: 'bottom'
+                default: 'auto'
+            },
+
+            alignOrder: {
+                type: Array,
+                required: false,
+                default: () => ['right-bottom', 'right-top', 'left-bottom', 'left-top', 'bottom-left', 'bottom-right', 'top-left', 'top-right']
             },
 
             x: {
@@ -279,6 +285,32 @@
                     return;
                 }
 
+                let rect;
+                if (this.align === 'auto') {
+                    // --- view port size
+                    const vpWidth = document.documentElement.clientWidth;
+                    const vpHeight = document.documentElement.clientHeight;
+
+                    for (let i = 0; i <= this.alignOrder.length; i++) {
+                        const align = (i === this.alignOrder.length ? this.alignOrder[0] : this.alignOrder[i]);
+                        rect = this.calcRectFromAlign(btn, body, align);
+
+                        if (rect.left >= pageXOffset &&
+                            rect.top >= pageYOffset &&
+                            rect.right <= pageXOffset + vpWidth &&
+                            rect.bottom <= pageYOffset + vpHeight) {
+                          break;
+                        }
+                    }
+                } else {
+                  rect = this.calcRectFromAlign(btn, body, this.align);
+                }
+
+                this.top = rect.top;
+                this.left = rect.left;
+            },
+
+            calcRectFromAlign (btn, body, align) {
                 const coords = this.getCoords(btn);
 
                 // --- current position
@@ -293,31 +325,52 @@
                 const bodyWidth = body.offsetWidth;
                 const bodyHeight = body.offsetHeight;
 
-                switch(this.align) {
+                let _top, _left;
+
+                switch(align) {
                     case 'top':
-                        this.top = (currentTop + pageYOffset - bodyHeight);
-                        this.left = (currentLeft + pageXOffset);
+                    case 'top-right':
+                        _top = (currentTop + pageYOffset - bodyHeight);
+                        _left = (currentLeft + pageXOffset);
+                        break;
+                    case 'top-left':
+                        _top = (currentTop + pageYOffset - bodyHeight);
+                        _left = (currentLeft + pageXOffset - bodyWidth + btnWidth);
                         break;
                     case 'right':
-                        this.top = (currentTop + pageYOffset);
-                        this.left = (currentLeft + pageXOffset + btnWidth);
+                    case 'right-bottom':
+                        _top = (currentTop + pageYOffset);
+                        _left = (currentLeft + pageXOffset + btnWidth);
                         break;
-                    case 'bottom':
-                        this.top = (currentTop + pageYOffset + btnHeight);
-                        this.left = (currentLeft + pageXOffset);
+                    case 'right-top':
+                        _top = (currentTop + pageYOffset - bodyHeight + btnHeight);
+                        _left = (currentLeft + pageXOffset + btnWidth);
+                        break;
+                    case 'bottom-left':
+                        _top = (currentTop + pageYOffset + btnHeight);
+                        _left = (currentLeft + pageXOffset - bodyWidth + btnWidth);
                         break;
                     case 'left':
-                        this.top = (currentTop + pageYOffset);
-                        this.left = (currentLeft + pageXOffset - bodyWidth);
+                    case 'left-bottom':
+                        _top = (currentTop + pageYOffset);
+                        _left = (currentLeft + pageXOffset - bodyWidth);
                         break;
+                    case 'left-top':
+                        _top = (currentTop + pageYOffset - bodyHeight + btnHeight);
+                        _left = (currentLeft + pageXOffset - bodyWidth);
+                        break;
+                    case 'bottom':
+                    case 'bottom-right':
                     default:
-                        this.top = (currentTop + pageYOffset + btnHeight);
-                        this.left = (currentLeft + pageXOffset);
+                        _top = (currentTop + pageYOffset + btnHeight);
+                        _left = (currentLeft + pageXOffset);
                         break;
                 }
 
-                this.top += this.y;
-                this.left += this.x;
+                _top += this.y;
+                _left += this.x;
+
+                return {top: _top, left: _left, bottom: _top + bodyHeight, right: _left + bodyWidth};
             },
 
             getCoords(el) {
